@@ -7,5 +7,5 @@ public class DeviceCatalogItem{
     private String department;
     private String jobRole;
     private Boolean active;
-    private LocalDate
+    private LocalDateTime createdAt;
 }

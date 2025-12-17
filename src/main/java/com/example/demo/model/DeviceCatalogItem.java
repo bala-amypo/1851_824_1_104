@@ -63,12 +63,15 @@ public class DeviceCatalogItem {
     public void setActive(Boolean active) {
         this.active = active;
     }
-    public EmployeeProfile (Long id,String deviceCode,String deviceType,String model,Integer maxAllowedPerEmployee,Boolean active){
+    public DeviceCatalogItem (Long id,String deviceCode,String deviceType,String model,Integer maxAllowedPerEmployee,Boolean active){
         this.id = id;
         this.deviceCode = deviceCode;
         this.deviceType = deviceType;
         this.model = model;
         this.maxAllowedPerEmployee = maxAllowedPerEmployee;
+    }
+    public DeviceCatalogItem(){
+
     }
 }
  

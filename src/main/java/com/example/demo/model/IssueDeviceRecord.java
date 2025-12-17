@@ -68,4 +68,20 @@ public class IssuedDeviceRecord {
     public void setReturned(Boolean returned) {
         this.returned = returned;
     }
+    public IssuedDeviceRecord(Long id, EmployeeProfile employee,
+                          DeviceCatalogItem device,
+                          LocalDateTime issuedAt,
+                          LocalDateTime returnedAt,
+                          Boolean returned) {
+    this.id = id;
+    this.employee = employee;
+    this.device = device;
+    this.issuedAt = issuedAt;
+    this.returnedAt = returnedAt;
+    this.returned = returned;
+}
+
+public IssuedDeviceRecord() {
+}
+
 }

@@ -54,4 +54,16 @@ public class EmployeeProfile {
     public void setActive(Boolean active) {
         this.active = active;
     }
+    public EmployeeProfile(Long id, String employeeCode, String fullName,
+                       String department, Boolean active) {
+    this.id = id;
+    this.employeeCode = employeeCode;
+    this.fullName = fullName;
+    this.department = department;
+    this.active = active;
+}
+
+public EmployeeProfile() {
+}
+
 }

@@ -68,16 +68,22 @@ public class EligibilityCheckRecord {
     public void setCheckedAt(LocalDateTime checkedAt) {
         this.checkedAt = checkedAt;
     }
-       public EligibilityCheckRecord(Long id,EmployeeProfile employee,DeviceCatalogItem device,Boolean eligible,String reason,LocalDateTime checkedAt){
-        this.id = id;
-        this.deviceCode = deviceCode;
-        this.deviceType = deviceType;
-        this.model = model;
-        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
-    }
-    public EligibilityCheckRecord(){
-        
-    }
+      public EligibilityCheckRecord(Long id,
+                              EmployeeProfile employee,
+                              DeviceCatalogItem device,
+                              Boolean eligible,
+                              String reason,
+                              LocalDateTime checkedAt) {
+    this.id = id;
+    this.employee = employee;
+    this.device = device;
+    this.eligible = eligible;
+    this.reason = reason;
+    this.checkedAt = checkedAt;
+}
+
+public EligibilityCheckRecord() {
+}
 
 }
 

@@ -54,4 +54,17 @@ public class PolicyRule {
     public void setActive(Boolean active) {
         this.active = active;
     }
+    public PolicyRule(Long id, String ruleName,
+                  String deviceType, Integer maxAllowed,
+                  Boolean active) {
+    this.id = id;
+    this.ruleName = ruleName;
+    this.deviceType = deviceType;
+    this.maxAllowed = maxAllowed;
+    this.active = active;
+}
+
+public PolicyRule() {
+}
+
 }

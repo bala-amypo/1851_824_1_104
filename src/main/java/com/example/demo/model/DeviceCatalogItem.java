@@ -63,5 +63,6 @@ public class DeviceCatalogItem {
     public void setActive(Boolean active) {
         this.active = active;
     }
+    public EmployeeProfile (Long id,)
 }
  

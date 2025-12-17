@@ -74,7 +74,7 @@ public class IssueDeviceRecord {
     public void setReturned(Boolean returned) {
         this.returned = returned;
     }
-    public IssuedDeviceRecord(Long id, EmployeeProfile employee,
+    public IssueDeviceRecord(Long id, EmployeeProfile employee,
                           DeviceCatalogItem device,
                           LocalDateTime issuedAt,
                           LocalDateTime returnedAt,
@@ -87,7 +87,7 @@ public class IssueDeviceRecord {
     this.returned = returned;
 }
 
-public IssuedDeviceRecord() {
+public IssueDeviceRecord() {
 }
 
 }

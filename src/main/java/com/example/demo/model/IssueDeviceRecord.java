@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "issued_device")
-public class IssuedDeviceRecord {
+public class IssueDeviceRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

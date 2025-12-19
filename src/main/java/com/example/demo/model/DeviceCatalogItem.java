@@ -1,11 +1,9 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "device_catalog")
 public class DeviceCatalogItem {
 
     @Id
@@ -17,8 +15,7 @@ public class DeviceCatalogItem {
     private String model;
     private Integer maxAllowedPerEmployee;
 
-    public DeviceCatalogItem() {
-    }
+    public DeviceCatalogItem() {}
 
     public DeviceCatalogItem(String deviceCode, String deviceType, String model, Integer maxAllowedPerEmployee) {
         this.deviceCode = deviceCode;
@@ -27,43 +24,18 @@ public class DeviceCatalogItem {
         this.maxAllowedPerEmployee = maxAllowedPerEmployee;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getDeviceCode() { return deviceCode; }
+    public void setDeviceCode(String deviceCode) { this.deviceCode = deviceCode; }
 
-    public String getDeviceCode() {
-        return deviceCode;
-    }
+    public String getDeviceType() { return deviceType; }
+    public void setDeviceType(String deviceType) { this.deviceType = deviceType; }
 
-    public void setDeviceCode(String deviceCode) {
-        this.deviceCode = deviceCode;
-    }
+    public String getModel() { return model; }
+    public void setModel(String model) { this.model = model; }
 
-    public String getDeviceType() {
-        return deviceType;
-    }
-
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public Integer getMaxAllowedPerEmployee() {
-        return maxAllowedPerEmployee;
-    }
-
-    public void setMaxAllowedPerEmployee(Integer maxAllowedPerEmployee) {
-        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
-    }
+    public Integer getMaxAllowedPerEmployee() { return maxAllowedPerEmployee; }
+    public void setMaxAllowedPerEmployee(Integer maxAllowedPerEmployee) { this.maxAllowedPerEmployee = maxAllowedPerEmployee; }
 }

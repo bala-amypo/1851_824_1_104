@@ -1,61 +1,41 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-public class IssuedDeviceRecord {
+@Table(name = "issued_devices")
+public class IssuedDevice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long employeeId;
-    private Long deviceId;
-    private LocalDate issuedDate;
+    @ManyToOne
+    private EmployeeProfile employee;
 
-    public IssuedDeviceRecord() {
+    @ManyToOne
+    private DeviceCatalogItem device;
+
+    private LocalDateTime issuedAt;
+
+    public IssuedDevice() {}
+
+    public IssuedDevice(EmployeeProfile employee, DeviceCatalogItem device, LocalDateTime issuedAt) {
+        this.employee = employee;
+        this.device = device;
+        this.issuedAt = issuedAt;
     }
 
-    public IssuedDeviceRecord(Long employeeId, Long deviceId, LocalDate issuedDate) {
-        this.employeeId = employeeId;
-        this.deviceId = deviceId;
-        this.issuedDate = issuedDate;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public EmployeeProfile getEmployee() { return employee; }
+    public void setEmployee(EmployeeProfile employee) { this.employee = employee; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public DeviceCatalogItem getDevice() { return device; }
+    public void setDevice(DeviceCatalogItem device) { this.device = device; }
 
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Long getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(Long deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public LocalDate getIssuedDate() {
-        return issuedDate;
-    }
-
-    public void setIssuedDate(LocalDate issuedDate) {
-        this.issuedDate = issuedDate;
-    }
+    public LocalDateTime getIssuedAt() { return issuedAt; }
+    public void setIssuedAt(LocalDateTime issuedAt) { this.issuedAt = issuedAt; }
 }

@@ -1,49 +1,31 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public class PolicyRule {
+@Table(name = "policies")
+public class Policy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String deviceType;
-    private Integer maxAllowed;
+    private String policyName;
+    private String description;
 
-    public PolicyRule() {
+    public Policy() {}
+
+    public Policy(String policyName, String description) {
+        this.policyName = policyName;
+        this.description = description;
     }
 
-    public PolicyRule(String deviceType, Integer maxAllowed) {
-        this.deviceType = deviceType;
-        this.maxAllowed = maxAllowed;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getPolicyName() { return policyName; }
+    public void setPolicyName(String policyName) { this.policyName = policyName; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDeviceType() {
-        return deviceType;
-    }
-
-    public void setDeviceType(String deviceType) {
-        this.deviceType = deviceType;
-    }
-
-    public Integer getMaxAllowed() {
-        return maxAllowed;
-    }
-
-    public void setMaxAllowed(Integer maxAllowed) {
-        this.maxAllowed = maxAllowed;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

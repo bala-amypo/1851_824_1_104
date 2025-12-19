@@ -19,23 +19,46 @@ public class IssuedDeviceRecord {
 
     private LocalDateTime issuedAt;
 
-    public IssuedDevice() {}
+    public IssuedDeviceRecord() {
+    }
 
-    public IssuedDevice(EmployeeProfile employee, DeviceCatalogItem device, LocalDateTime issuedAt) {
+    public IssuedDeviceRecord(EmployeeProfile employee,
+                              DeviceCatalogItem device,
+                              LocalDateTime issuedAt) {
         this.employee = employee;
         this.device = device;
         this.issuedAt = issuedAt;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public EmployeeProfile getEmployee() { return employee; }
-    public void setEmployee(EmployeeProfile employee) { this.employee = employee; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public DeviceCatalogItem getDevice() { return device; }
-    public void setDevice(DeviceCatalogItem device) { this.device = device; }
+    public EmployeeProfile getEmployee() {
+        return employee;
+    }
 
-    public LocalDateTime getIssuedAt() { return issuedAt; }
-    public void setIssuedAt(LocalDateTime issuedAt) { this.issuedAt = issuedAt; }
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
+    }
+
+    public DeviceCatalogItem getDevice() {
+        return device;
+    }
+
+    public void setDevice(DeviceCatalogItem device) {
+        this.device = device;
+    }
+
+    public LocalDateTime getIssuedAt() {
+        return issuedAt;
+    }
+
+    public void setIssuedAt(LocalDateTime issuedAt) {
+        this.issuedAt = issuedAt;
+    }
 }

@@ -2,17 +2,18 @@ package com.example.demo.service;
 
 import com.example.demo.model.DeviceCatalogItem;
 import com.example.demo.repository.DeviceCatalogItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class DeviceCatalogService {
 
-    @Autowired
-    private DeviceCatalogItemRepository repository;
+    private final DeviceCatalogItemRepository repository;
+
+    public DeviceCatalogService(DeviceCatalogItemRepository repository) {
+        this.repository = repository;
+    }
 
     public List<DeviceCatalogItem> getAllDevices() {
         return repository.findAll();

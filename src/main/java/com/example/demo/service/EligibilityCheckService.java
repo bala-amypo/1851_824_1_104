@@ -1,20 +1,21 @@
 package com.example.demo.service;
 
 import com.example.demo.model.EligibilityCheckRecord;
-import com.example.demo.model.DeviceCatalogItem;
 import com.example.demo.model.EmployeeProfile;
+import com.example.demo.model.DeviceCatalogItem;
 import com.example.demo.repository.EligibilityCheckRecordRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EligibilityCheckService {
 
-    @Autowired
-    private EligibilityCheckRecordRepository repository;
+    private final EligibilityCheckRecordRepository repository;
+
+    public EligibilityCheckService(EligibilityCheckRecordRepository repository) {
+        this.repository = repository;
+    }
 
     public List<EligibilityCheckRecord> getAllChecks() {
         return repository.findAll();

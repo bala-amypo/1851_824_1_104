@@ -2,17 +2,18 @@ package com.example.demo.service;
 
 import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserAccountService {
 
-    @Autowired
-    private UserAccountRepository repository;
+    private final UserAccountRepository repository;
+
+    public UserAccountService(UserAccountRepository repository) {
+        this.repository = repository;
+    }
 
     public List<UserAccount> getAllUsers() {
         return repository.findAll();
@@ -30,4 +31,3 @@ public class UserAccountService {
         repository.deleteById(id);
     }
 }
-

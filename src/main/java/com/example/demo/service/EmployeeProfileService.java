@@ -2,17 +2,18 @@ package com.example.demo.service;
 
 import com.example.demo.model.EmployeeProfile;
 import com.example.demo.repository.EmployeeProfileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EmployeeProfileService {
 
-    @Autowired
-    private EmployeeProfileRepository repository;
+    private final EmployeeProfileRepository repository;
+
+    public EmployeeProfileService(EmployeeProfileRepository repository) {
+        this.repository = repository;
+    }
 
     public List<EmployeeProfile> getAllEmployees() {
         return repository.findAll();

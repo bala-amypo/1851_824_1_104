@@ -1,32 +1,41 @@
-package com.example.demo.service;
+package com.example.demo.model;
 
-import com.example.demo.model.UserAccount;
-import com.example.demo.repository.UserAccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import java.util.List;
-import java.util.Optional;
+@Entity
+public class DeviceCatalogItem {
 
-@Service
-public class UserAccountService {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Autowired
-    private UserAccountRepository repository;
+    private String deviceCode;
+    private String deviceType;
+    private String model;
+    private Integer maxAllowedPerEmployee;
 
-    public List<UserAccount> getAllUsers() {
-        return repository.findAll();
+    public DeviceCatalogItem() {}
+
+    public Long getId() {
+        return id;
     }
 
-    public Optional<UserAccount> getUserById(Long id) {
-        return repository.findById(id);
+    public String getDeviceCode() {
+        return deviceCode;
     }
 
-    public UserAccount saveUser(UserAccount user) {
-        return repository.save(user);
+    public String getDeviceType() {
+        return deviceType;
     }
 
-    public void deleteUser(Long id) {
-        repository.deleteById(id);
+    public String getModel() {
+        return model;
+    }
+
+    public Integer getMaxAllowedPerEmployee() {
+        return maxAllowedPerEmployee;
     }
 }

@@ -1,43 +1,29 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.PolicyRule;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.PolicyRuleRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PolicyRuleService {
 
-    private final PolicyRuleRepository policyRuleRepository;
+    private final PolicyRuleRepository repository;
 
-    public PolicyRuleService(PolicyRuleRepository policyRuleRepository) {
-        this.policyRuleRepository = policyRuleRepository;
+    public PolicyRuleService(PolicyRuleRepository repository) {
+        this.repository = repository;
     }
 
-    public List<PolicyRule> getAllPolicies() {
-        return policyRuleRepository.findAll();
+    public List<PolicyRule> getAllRules() {
+        return repository.findAll();
     }
 
-    public PolicyRule getPolicyById(Long id) {
-        return policyRuleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Policy not found with id: " + id));
+    public Optional<PolicyRule> getRuleById(Long id) {
+        return repository.findById(id);
     }
 
-    public PolicyRule createPolicy(PolicyRule policyRule) {
-        return policyRuleRepository.save(policyRule);
-    }
-
-    public PolicyRule updatePolicy(Long id, PolicyRule updatedPolicy) {
-        PolicyRule existing = getPolicyById(id);
-        existing.setDeviceType(updatedPolicy.getDeviceType());
-        existing.setMaxAllowed(updatedPolicy.getMaxAllowed());
-        return policyRuleRepository.save(existing);
-    }
-
-    public void deletePolicy(Long id) {
-        PolicyRule existing = getPolicyById(id);
-        policyRuleRepository.delete(existing);
+    public PolicyRule saveRule(PolicyRule rule) {
+        return repository.save(rule);
     }
 }

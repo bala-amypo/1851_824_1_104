@@ -1,36 +1,29 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.IssuedDeviceRecord;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.IssuedDeviceRecordRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IssuedDeviceRecordService {
 
-    private final IssuedDeviceRecordRepository issuedDeviceRecordRepository;
+    private final IssuedDeviceRecordRepository repository;
 
-    public IssuedDeviceRecordService(IssuedDeviceRecordRepository issuedDeviceRecordRepository) {
-        this.issuedDeviceRecordRepository = issuedDeviceRecordRepository;
+    public IssuedDeviceRecordService(IssuedDeviceRecordRepository repository) {
+        this.repository = repository;
     }
 
-    public List<IssuedDeviceRecord> getAllIssuedDevices() {
-        return issuedDeviceRecordRepository.findAll();
+    public List<IssuedDeviceRecord> getAllIssuedRecords() {
+        return repository.findAll();
     }
 
-    public IssuedDeviceRecord getIssuedDeviceById(Long id) {
-        return issuedDeviceRecordRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Issued Device not found with id: " + id));
+    public Optional<IssuedDeviceRecord> getIssuedRecordById(Long id) {
+        return repository.findById(id);
     }
 
-    public IssuedDeviceRecord issueDevice(IssuedDeviceRecord record) {
-        return issuedDeviceRecordRepository.save(record);
-    }
-
-    public void revokeDevice(Long id) {
-        IssuedDeviceRecord existing = getIssuedDeviceById(id);
-        issuedDeviceRecordRepository.delete(existing);
+    public IssuedDeviceRecord saveIssuedRecord(IssuedDeviceRecord record) {
+        return repository.save(record);
     }
 }

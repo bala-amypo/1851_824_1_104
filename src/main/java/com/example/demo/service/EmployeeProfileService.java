@@ -1,45 +1,34 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.EmployeeProfileDTO;
 import com.example.demo.entity.EmployeeProfile;
-import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.dto.EmployeeProfileDTO;
 import com.example.demo.repository.EmployeeProfileRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeProfileService {
 
-    private final EmployeeProfileRepository employeeProfileRepository;
+    private final EmployeeProfileRepository repository;
 
-    public EmployeeProfileService(EmployeeProfileRepository employeeProfileRepository) {
-        this.employeeProfileRepository = employeeProfileRepository;
+    public EmployeeProfileService(EmployeeProfileRepository repository) {
+        this.repository = repository;
     }
 
-    public List<EmployeeProfile> getAllEmployees() {
-        return employeeProfileRepository.findAll();
+    public List<EmployeeProfileDTO> getAllEmployees() {
+        return repository.findAll().stream()
+                .map(e -> new EmployeeProfileDTO(e.getId(), e.getName(), e.getEmail(), e.getJoiningDate()))
+                .collect(Collectors.toList());
     }
 
-    public EmployeeProfile getEmployeeById(Long id) {
-        return employeeProfileRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
+    public Optional<EmployeeProfile> getEmployeeById(Long id) {
+        return repository.findById(id);
     }
 
-    public EmployeeProfile createEmployee(EmployeeProfile employeeProfile) {
-        return employeeProfileRepository.save(employeeProfile);
-    }
-
-    public EmployeeProfile updateEmployee(Long id, EmployeeProfile updatedProfile) {
-        EmployeeProfile existing = getEmployeeById(id);
-        existing.setName(updatedProfile.getName());
-        existing.setDepartment(updatedProfile.getDepartment());
-        existing.setEmail(updatedProfile.getEmail());
-        return employeeProfileRepository.save(existing);
-    }
-
-    public void deleteEmployee(Long id) {
-        EmployeeProfile existing = getEmployeeById(id);
-        employeeProfileRepository.delete(existing);
+    public EmployeeProfile saveEmployee(EmployeeProfile employee) {
+        return repository.save(employee);
     }
 }
+

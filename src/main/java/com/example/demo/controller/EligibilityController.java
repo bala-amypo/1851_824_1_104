@@ -14,7 +14,7 @@ public class EligibilityController {
     private EligibilityCheckService eligibilityService;
 
     @PostMapping("/check")
-    public EligibilityCheckResponse checkEligibility(@RequestBody EligibilityCheckRequest request) {
+    public AuthResponse checkEligibility(@RequestBody AuthRequest request) {
         return eligibilityService.checkEligibility(request);
     }
 }

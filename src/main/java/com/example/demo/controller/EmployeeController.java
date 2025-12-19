@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.EmployeeProfile;
-import com.example.demo.service.EmployeeService;
+import com.example.demo.service.EmployeeProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeProfileService employeeService;
 
     @GetMapping
     public List<EmployeeProfile> getAllEmployees() {

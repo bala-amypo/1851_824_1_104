@@ -19,23 +19,8 @@ public class DeviceController {
         return deviceService.getAllDevices();
     }
 
-    @GetMapping("/{id}")
-    public DeviceCatalogItem getDevice(@PathVariable Long id) {
-        return deviceService.getDeviceById(id);
-    }
-
     @PostMapping
-    public DeviceCatalogItem createDevice(@RequestBody DeviceCatalogItem device) {
-        return deviceService.createDevice(device);
-    }
-
-    @PutMapping("/{id}")
-    public DeviceCatalogItem updateDevice(@PathVariable Long id, @RequestBody DeviceCatalogItem device) {
-        return deviceService.updateDevice(id, device);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteDevice(@PathVariable Long id) {
-        deviceService.deleteDevice(id);
+    public DeviceCatalogItem addDevice(@RequestBody DeviceCatalogItem device) {
+        return deviceService.addDevice(device);
     }
 }

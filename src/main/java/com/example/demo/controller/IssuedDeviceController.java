@@ -20,12 +20,7 @@ public class IssuedDeviceController {
     }
 
     @PostMapping
-    public IssuedDevice issueDevice(@RequestBody IssuedDevice issuedDevice) {
-        return issuedDeviceService.issueDevice(issuedDevice);
-    }
-
-    @DeleteMapping("/{id}")
-    public void returnDevice(@PathVariable Long id) {
-        issuedDeviceService.returnDevice(id);
+    public IssuedDevice issueDevice(@RequestBody IssuedDevice device) {
+        return issuedDeviceService.issueDevice(device);
     }
 }

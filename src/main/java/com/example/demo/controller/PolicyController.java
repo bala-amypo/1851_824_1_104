@@ -19,23 +19,8 @@ public class PolicyController {
         return policyService.getAllPolicies();
     }
 
-    @GetMapping("/{id}")
-    public Policy getPolicy(@PathVariable Long id) {
-        return policyService.getPolicyById(id);
-    }
-
     @PostMapping
-    public Policy createPolicy(@RequestBody Policy policy) {
-        return policyService.createPolicy(policy);
-    }
-
-    @PutMapping("/{id}")
-    public Policy updatePolicy(@PathVariable Long id, @RequestBody Policy policy) {
-        return policyService.updatePolicy(id, policy);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deletePolicy(@PathVariable Long id) {
-        policyService.deletePolicy(id);
+    public Policy addPolicy(@RequestBody Policy policy) {
+        return policyService.addPolicy(policy);
     }
 }

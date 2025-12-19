@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.LoginRequest;
-import com.example.demo.dto.LoginResponse;
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,21 +17,17 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/login")
-    public LoginResponse authenticateUser(@RequestBody LoginRequest loginRequest) {
-        // Authenticate using Spring Security AuthenticationManager
+    public AuthResponse authenticateUser(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
+                        authRequest.getUsername(),
+                        authRequest.getPassword()
                 )
         );
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Here we just return a dummy token for testing purposes
-        // In real app, generate JWT token
-        String dummyToken = "dummy-jwt-token-for-" + loginRequest.getUsername();
-
-        return new LoginResponse(dummyToken);
+        // Dummy token for testing
+        String dummyToken = "dummy-jwt-token-for-" + authRequest.getUsername();
+        return new AuthResponse(dummyToken);
     }
 }

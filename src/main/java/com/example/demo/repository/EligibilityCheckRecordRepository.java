@@ -1,8 +1,17 @@
-package com.example.demo.repository;
+package com.example.demo.service;
 
 import com.example.demo.model.EligibilityCheckRecord;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.repository.EligibilityCheckRecordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public interface EligibilityCheckRecordRepository
-        extends JpaRepository<EligibilityCheckRecord, Long> {
+@Service
+public class EligibilityCheckService {
+
+    @Autowired
+    private EligibilityCheckRecordRepository repository;
+
+    public EligibilityCheckRecord save(EligibilityCheckRecord record) {
+        return repository.save(record);
+    }
 }

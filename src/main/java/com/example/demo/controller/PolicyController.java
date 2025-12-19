@@ -20,7 +20,7 @@ public class PolicyController {
     }
 
     @PostMapping
-    public Policy addPolicy(@RequestBody Policy policy) {
+    public PolicyRule addPolicy(@RequestBody PolicyRule policy) {
         return policyService.addPolicy(policy);
     }
 }

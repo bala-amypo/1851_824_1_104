@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "device_catalog")
-public class DeviceCatalogItem {
+public class DeviceCatalogItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

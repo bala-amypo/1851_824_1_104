@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.model;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,7 +15,8 @@ public class UserAccount {
     private String username;
     private String role;
 
-    public UserAccount() {}
+    public UserAccount() {
+    }
 
     public Long getId() {
         return id;
@@ -25,7 +26,15 @@ public class UserAccount {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getRole() {
         return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

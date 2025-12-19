@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import com.example.demo.model.IssuedDeviceRecord;
 import com.example.demo.repository.IssuedDeviceRecordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class IssuedDeviceRecordService {
-    private final IssuedDeviceRecordRepository repository;
 
-    public IssuedDeviceRecordService(IssuedDeviceRecordRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private IssuedDeviceRecordRepository repository;
 
     public List<IssuedDeviceRecord> getAllIssuedRecords() {
         return repository.findAll();
@@ -22,11 +22,7 @@ public class IssuedDeviceRecordService {
         return repository.findById(id);
     }
 
-    public IssuedDeviceRecord createIssuedRecord(IssuedDeviceRecord record) {
-        return repository.save(record);
-    }
-
-    public IssuedDeviceRecord updateIssuedRecord(IssuedDeviceRecord record) {
+    public IssuedDeviceRecord saveIssuedRecord(IssuedDeviceRecord record) {
         return repository.save(record);
     }
 

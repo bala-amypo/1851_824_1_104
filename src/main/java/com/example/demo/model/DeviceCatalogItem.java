@@ -1,44 +1,32 @@
-package com.example.demo.entity;
+package com.example.demo.service;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.demo.model.UserAccount;
+import com.example.demo.repository.UserAccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Entity
-public class DeviceCatalogItem {
+import java.util.List;
+import java.util.Optional;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Service
+public class UserAccountService {
 
-    private String deviceCode;
-    private String deviceType;
-    private String model;
-    private Integer maxAllowedPerEmployee;
+    @Autowired
+    private UserAccountRepository repository;
 
-    public DeviceCatalogItem() {}
-
-    public DeviceCatalogItem(Long id, String deviceCode, String deviceType, String model, Integer maxAllowedPerEmployee) {
-        this.id = id;
-        this.deviceCode = deviceCode;
-        this.deviceType = deviceType;
-        this.model = model;
-        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
+    public List<UserAccount> getAllUsers() {
+        return repository.findAll();
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Optional<UserAccount> getUserById(Long id) {
+        return repository.findById(id);
+    }
 
-    public String getDeviceCode() { return deviceCode; }
-    public void setDeviceCode(String deviceCode) { this.deviceCode = deviceCode; }
+    public UserAccount saveUser(UserAccount user) {
+        return repository.save(user);
+    }
 
-    public String getDeviceType() { return deviceType; }
-    public void setDeviceType(String deviceType) { this.deviceType = deviceType; }
-
-    public String getModel() { return model; }
-    public void setModel(String model) { this.model = model; }
-
-    public Integer getMaxAllowedPerEmployee() { return maxAllowedPerEmployee; }
-    public void setMaxAllowedPerEmployee(Integer maxAllowedPerEmployee) { this.maxAllowedPerEmployee = maxAllowedPerEmployee; }
+    public void deleteUser(Long id) {
+        repository.deleteById(id);
+    }
 }

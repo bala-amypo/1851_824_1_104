@@ -1,17 +1,14 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.EmployeeProfile;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface EmployeeProfileRepository extends JpaRepository<EmployeeProfile, Long> {
-
-    boolean existsByEmployeeId(String employeeId);
-
-    boolean existsByEmail(String email);
 
     Optional<EmployeeProfile> findByEmployeeId(String employeeId);
 
-    Optional<EmployeeProfile> findByEmployeeIdAndActiveTrue(String employeeId);
+    boolean existsByEmployeeId(String employeeId);
 }

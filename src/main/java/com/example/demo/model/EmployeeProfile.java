@@ -1,46 +1,75 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "employee_profile")
+@Table(name = "employee_profiles")
 public class EmployeeProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String employeeCode;
-    private String fullName;
+    @Column(name = "employee_id", nullable = false, unique = true, length = 50)
+    private String employeeId;
+
+    @Column(nullable = false, length = 100)
+    private String name;
+
+    @Column(nullable = false, length = 100)
     private String department;
-    private Boolean active = true;
+
+    @Column(nullable = false, length = 100)
+    private String role;
+
+    @Column(nullable = false)
+    private Boolean active;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    protected EmployeeProfile() {
+    }
+
+    public EmployeeProfile(
+            String employeeId,
+            String name,
+            String department,
+            String role,
+            Boolean active
+    ) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.department = department;
+        this.role = role;
+        this.active = active;
+        this.createdAt = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public String getEmployeeCode() {
-        return employeeCode;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public void setEmployeeCode(String employeeCode) {
-        this.employeeCode = employeeCode;
+    public String getName() {
+        return name;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDepartment() {
@@ -51,6 +80,14 @@ public class EmployeeProfile {
         this.department = department;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Boolean getActive() {
         return active;
     }
@@ -58,16 +95,8 @@ public class EmployeeProfile {
     public void setActive(Boolean active) {
         this.active = active;
     }
-    public EmployeeProfile(Long id, String employeeCode, String fullName,
-                       String department, Boolean active) {
-    this.id = id;
-    this.employeeCode = employeeCode;
-    this.fullName = fullName;
-    this.department = department;
-    this.active = active;
-}
 
-public EmployeeProfile() {
-}
-
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }

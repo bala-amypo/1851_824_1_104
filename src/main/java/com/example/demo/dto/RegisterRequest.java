@@ -1,18 +1,19 @@
 package com.example.demo.dto;
 
-public class RegisterRequest {
-    private String username;
-    private String role;
-    private String password;
+public class RegisterResponse {
+    private String message;
+    private Long userId;
 
-    public RegisterRequest() {}
+    public RegisterResponse() {}
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public RegisterResponse(String message, Long userId) {
+        this.message = message;
+        this.userId = userId;
+    }
 
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 }

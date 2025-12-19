@@ -8,7 +8,7 @@ public class RegisterRequest {
     public RegisterRequest() {
     }
 
-    public RegisterReuest(Long id, String username, String email) {
+    public RegisterRequest(Long id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;

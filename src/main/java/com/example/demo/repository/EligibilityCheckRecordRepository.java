@@ -1,9 +1,7 @@
- package com.example.demo.repository;
+package com.example.demo.repository;
 
- import com.example.demo.entity.EligibilityCheckRecord;
+import com.example.demo.model.EligibilityCheckRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface EligibilityCheckRepository extends JpaRepository<EligibilityCheckRecord, Long> {
-    // custom query methods if needed
-}
+public interface EligibilityCheckRepository extends JpaRepository<EligibilityCheckRecord, Long> {}
 

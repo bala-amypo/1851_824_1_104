@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.DeviceCatalogItem;
+import com.example.demo.model.DeviceCatalogItem;
 import com.example.demo.repository.DeviceCatalogRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Service
 public class DeviceCatalogService {
-
     private final DeviceCatalogRepository repository;
 
     public DeviceCatalogService(DeviceCatalogRepository repository) {
@@ -23,7 +22,15 @@ public class DeviceCatalogService {
         return repository.findById(id);
     }
 
-    public DeviceCatalogItem saveDevice(DeviceCatalogItem device) {
+    public DeviceCatalogItem createDevice(DeviceCatalogItem device) {
         return repository.save(device);
+    }
+
+    public DeviceCatalogItem updateDevice(DeviceCatalogItem device) {
+        return repository.save(device);
+    }
+
+    public void deleteDevice(Long id) {
+        repository.deleteById(id);
     }
 }

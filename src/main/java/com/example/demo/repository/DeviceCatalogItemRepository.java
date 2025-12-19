@@ -2,9 +2,8 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.DeviceCatalogItem;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface DeviceCatalogRepository extends JpaRepository<DeviceCatalogItem, Long> {
+// remove 'public' keyword
+interface DeviceCatalogRepository extends JpaRepository<DeviceCatalogItem, Long> {
+    // custom query methods if needed
 }
-

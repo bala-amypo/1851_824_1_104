@@ -87,7 +87,7 @@ public class IssueDeviceRecord {
     this.returned = returned;
 }
 
-public IssueDeviceRecord() {
+public IssuedDeviceRecord() {
 }
 
 }

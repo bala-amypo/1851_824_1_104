@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.EligibilityCheckRequest;
-import com.example.demo.dto.EligibilityCheckResponse;
-import com.example.demo.service.EligibilityService;
+import com.example.demo.dto.AuthRequest;
+import com.example.demo.dto.AuthResponse;
+import com.example.demo.service.EligibilityCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class EligibilityController {
 
     @Autowired
-    private EligibilityService eligibilityService;
+    private EligibilityCheckService eligibilityService;
 
     @PostMapping("/check")
     public EligibilityCheckResponse checkEligibility(@RequestBody EligibilityCheckRequest request) {

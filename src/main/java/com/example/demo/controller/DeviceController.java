@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.DeviceCatalogItem;
-import com.example.demo.service.DeviceService;
+import com.example.demo.service.DeviceCatalogItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class DeviceController {
 
     @Autowired
-    private DeviceService deviceService;
+    private DeviceCatalogueItemService deviceService;
 
     @GetMapping
     public List<DeviceCatalogItem> getAllDevices() {

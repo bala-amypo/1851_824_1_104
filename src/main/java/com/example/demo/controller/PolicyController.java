@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Policy;
-import com.example.demo.service.PolicyService;
+import com.example.demo.entity.PolicyRule;
+import com.example.demo.service.PolicyRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +12,10 @@ import java.util.List;
 public class PolicyController {
 
     @Autowired
-    private PolicyService policyService;
+    private PolicyRuleService policyService;
 
     @GetMapping
-    public List<Policy> getAllPolicies() {
+    public List<PolicyRule> getAllPolicies() {
         return policyService.getAllPolicies();
     }
 

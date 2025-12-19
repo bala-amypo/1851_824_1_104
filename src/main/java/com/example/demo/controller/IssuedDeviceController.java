@@ -15,12 +15,12 @@ public class IssuedDeviceController {
     private IssuedDeviceRecordService issuedDeviceService;
 
     @GetMapping
-    public List<IssuedDevice> getAllIssuedDevices() {
+    public List<IssuedDeviceRecord> getAllIssuedDevices() {
         return issuedDeviceService.getAllIssuedDevices();
     }
 
     @PostMapping
-    public IssuedDevice issueDevice(@RequestBody IssuedDevice device) {
+    public IssuedDeviceRecord issueDevice(@RequestBody IssuedDeviceRecord device) {
         return issuedDeviceService.issueDevice(device);
     }
 }

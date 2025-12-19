@@ -21,8 +21,18 @@ public class IssuedDeviceRecord {
     public IssuedDeviceRecord() {
     }
 
+    public IssuedDeviceRecord(Long employeeId, Long deviceId, LocalDate issuedDate) {
+        this.employeeId = employeeId;
+        this.deviceId = deviceId;
+        this.issuedDate = issuedDate;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getEmployeeId() {

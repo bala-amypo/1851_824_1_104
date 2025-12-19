@@ -18,8 +18,17 @@ public class PolicyRule {
     public PolicyRule() {
     }
 
+    public PolicyRule(String deviceType, Integer maxAllowed) {
+        this.deviceType = deviceType;
+        this.maxAllowed = maxAllowed;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDeviceType() {

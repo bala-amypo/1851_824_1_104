@@ -20,8 +20,19 @@ public class DeviceCatalogItem {
     public DeviceCatalogItem() {
     }
 
+    public DeviceCatalogItem(String deviceCode, String deviceType, String model, Integer maxAllowedPerEmployee) {
+        this.deviceCode = deviceCode;
+        this.deviceType = deviceType;
+        this.model = model;
+        this.maxAllowedPerEmployee = maxAllowedPerEmployee;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDeviceCode() {

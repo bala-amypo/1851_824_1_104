@@ -23,8 +23,20 @@ public class EligibilityCheckRecord {
     public EligibilityCheckRecord() {
     }
 
+    public EligibilityCheckRecord(Long employeeId, Long deviceId, Boolean eligible, String reason, LocalDateTime checkedAt) {
+        this.employeeId = employeeId;
+        this.deviceId = deviceId;
+        this.eligible = eligible;
+        this.reason = reason;
+        this.checkedAt = checkedAt;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getEmployeeId() {

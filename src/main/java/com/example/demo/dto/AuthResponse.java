@@ -1,19 +1,12 @@
 package com.example.demo.dto;
 
 public class AuthResponse {
-    private String token;
+    private boolean eligible;
+    private String message;
 
-    public AuthResponse() {}
+    public boolean isEligible() { return eligible; }
+    public void setEligible(boolean eligible) { this.eligible = eligible; }
 
-    public AuthResponse(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
 }

@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
-import org.springframework.stereotype.Service;
+import com.example.demo.model.DeviceCatalogItem;
+import java.util.List;
 
-@Service
-public class DeviceCatalogItemService {
+public interface DeviceCatalogItemService {
+    List<DeviceCatalogItem> getAllDevices();
+    DeviceCatalogItem addDevice(DeviceCatalogItem device);
 }

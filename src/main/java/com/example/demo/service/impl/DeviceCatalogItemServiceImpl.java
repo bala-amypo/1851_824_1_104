@@ -1,14 +1,17 @@
-import org.springframework.beans.factory.annotation.Autowired;
-import com.example.demo.repository.DeviceCatalogItemRepository;
+package com.example.demo.service.impl;
+
+import com.example.demo.model.DeviceCatalogItem;
+import com.example.demo.service.DeviceCatalogItemService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-public class DeviceCatalogItemServiceImpl implements DeviceCatalogItemService {
-
-    @Autowired
-    private DeviceCatalogItemRepository repository;
+public interface DeviceCatalogItemServiceImpl
+        implements DeviceCatalogItemService {
 
     @Override
     public List<DeviceCatalogItem> getAllItems() {
-        return repository.findAll(); // fixes the issue
+        return repository.findAll();;
     }
 }

@@ -15,6 +15,7 @@ public class EligibilityController {
 
     @PostMapping("/check")
     public AuthResponse checkEligibility(@RequestBody AuthRequest request) {
-        return EligibilityCheckService.checkEligibility(request);
+        // Call the method on the instance, NOT the interface name
+        return eligibilityService.checkEligibility(request);
     }
 }

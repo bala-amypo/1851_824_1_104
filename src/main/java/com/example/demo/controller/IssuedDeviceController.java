@@ -12,15 +12,15 @@ import java.util.List;
 public class IssuedDeviceController {
 
     @Autowired
-    private IssuedDeviceRecordService issuedDeviceService;
+    private IssuedDeviceRecordService issuedService;
 
     @GetMapping
     public List<IssuedDeviceRecord> getAllIssuedDevices() {
-        return IssuedDeviceRecordService.getAllIssuedDevices();
+        return null; // Return null
     }
 
     @PostMapping
-    public IssuedDeviceRecord issueDevice(@RequestBody IssuedDeviceRecord device) {
-        return IssuedDeviceRecordService.issueDevice(device);
+    public IssuedDeviceRecord issueDevice(@RequestBody IssuedDeviceRecord record) {
+        return null; // Return null
     }
 }

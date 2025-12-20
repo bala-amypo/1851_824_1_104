@@ -16,11 +16,11 @@ public class DeviceController {
 
     @GetMapping
     public List<DeviceCatalogItem> getAllDevices() {
-        return deviceService.getAllDevices();
+        return DeviceCatalogItemService.getAllDevices();
     }
 
     @PostMapping
     public DeviceCatalogItem addDevice(@RequestBody DeviceCatalogItem device) {
-        return deviceService.addDevice(device);
+        return DeviceCatalogItemService.addDevice(device);
     }
 }

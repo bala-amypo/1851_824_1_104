@@ -16,11 +16,11 @@ public class EmployeeController {
 
     @GetMapping
     public List<EmployeeProfile> getAllEmployees() {
-        return EmployeeService.getAllEmployees();
+        return EmployeeProfileService.getAllEmployees();
     }
 
     @PostMapping
     public EmployeeProfile addEmployee(@RequestBody EmployeeProfile employee) {
-        return employeeService.addEmployee(employee);
+        return EmployeeProfileService.addEmployee(employee);
     }
 }

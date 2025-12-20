@@ -12,7 +12,7 @@ import java.util.List;
 public class DeviceController {
 
     @Autowired
-    private DeviceCatalogueItemService deviceService;
+    private DeviceCatalogItemService deviceService;
 
     @GetMapping
     public List<DeviceCatalogItem> getAllDevices() {

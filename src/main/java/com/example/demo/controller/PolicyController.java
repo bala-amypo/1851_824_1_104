@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.PolicyRule;
+import com.example.demo.model.PolicyRule;
 import com.example.demo.service.PolicyRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

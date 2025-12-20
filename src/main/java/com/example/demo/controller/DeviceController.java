@@ -16,11 +16,12 @@ public class DeviceController {
 
     @GetMapping
     public List<DeviceCatalogItem> getAllDevices() {
-        return DeviceCatalogItemService.getAllDevices();
+        // Call the method on the instance, not on the interface
+        return deviceService.getAllDevices();
     }
 
     @PostMapping
     public DeviceCatalogItem addDevice(@RequestBody DeviceCatalogItem device) {
-        return DeviceCatalogItemService.addDevice(device);
+        return deviceService.addDevice(device);
     }
 }

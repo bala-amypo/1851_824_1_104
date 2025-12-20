@@ -1,9 +1,15 @@
 package com.example.demo.service.impl;
 
-import org.springframework.stereotype.Service;
+import com.example.demo.entity.IssuedDeviceRecord;
 import com.example.demo.service.IssuedDeviceRecordService;
+import org.springframework.stereotype.Service;
 
 @Service
 public class IssuedDeviceRecordServiceImpl
         implements IssuedDeviceRecordService {
+
+    @Override
+    public IssuedDeviceRecord issueDevice(Long employeeId, Long deviceId) {
+        return null;
+    }
 }

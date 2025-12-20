@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PolicyRuleServiceDummyImpl implements PolicyRuleService {
+public class PolicyRuleServiceImpl implements PolicyRuleService {
 
     @Override
     public List<PolicyRule> getAllPolicies() {

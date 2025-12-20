@@ -1,7 +1,10 @@
+// File: src/main/java/com/example/demo/service/PolicyRuleService.java
 package com.example.demo.service;
 
-import org.springframework.stereotype.Service;
+import com.example.demo.model.PolicyRule;
+import java.util.List;
 
-@Service
-public class PolicyRuleService {
+public interface PolicyRuleService {
+    List<PolicyRule> getAllPolicies();
+    PolicyRule addPolicy(PolicyRule policy);
 }

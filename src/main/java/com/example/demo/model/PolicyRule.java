@@ -1,9 +1,10 @@
+// File: src/main/java/com/example/demo/model/PolicyRule.java
 package com.example.demo.model;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "policies")
+@Table(name = "policy_rule")
 public class PolicyRule {
 
     @Id
@@ -20,30 +21,12 @@ public class PolicyRule {
         this.description = description;
     }
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getPolicyName() { return policyName; }
+    public void setPolicyName(String policyName) { this.policyName = policyName; }
 
-    public String getPolicyName() {
-        return policyName;
-    }
-
-    public void setPolicyName(String policyName) {
-        this.policyName = policyName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }
-
-

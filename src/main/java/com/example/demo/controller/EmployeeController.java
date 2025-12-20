@@ -16,7 +16,7 @@ public class EmployeeController {
 
     @GetMapping
     public List<EmployeeProfile> getAllEmployees() {
-        return employeeService.getAllEmployees();
+        return EmployeeService.getAllEmployees();
     }
 
     @PostMapping

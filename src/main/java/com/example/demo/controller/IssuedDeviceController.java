@@ -16,7 +16,7 @@ public class IssuedDeviceController {
 
     @GetMapping
     public List<IssuedDeviceRecord> getAllIssuedDevices() {
-        return issuedDeviceService.getAllIssuedDevices();
+        return IssuedDeviceService.getAllIssuedDevices();
     }
 
     @PostMapping

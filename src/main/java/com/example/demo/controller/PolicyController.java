@@ -16,11 +16,11 @@ public class PolicyController {
 
     @GetMapping
     public List<PolicyRule> getAllPolicies() {
-        return policyService.getAllPolicies();
+        return PolicyRuleService.getAllPolicies();
     }
 
     @PostMapping
     public PolicyRule addPolicy(@RequestBody PolicyRule policy) {
-        return policyService.addPolicy(policy);
+        return PolicyRuleService.addPolicy(policy);
     }
 }

@@ -4,5 +4,6 @@ import com.example.demo.model.DeviceCatalogItem;
 import java.util.List;
 
 public interface DeviceCatalogItemServiceImpl {
-    List<DeviceCatalogItem> getAllItems();
+    List<DeviceCatalogItem> getAllDevices();
+    DeviceCatalogItem addDevice(DeviceCatalogItem device);
 }

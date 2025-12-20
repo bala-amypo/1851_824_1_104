@@ -16,7 +16,6 @@ public class DeviceController {
 
     @GetMapping
     public List<DeviceCatalogItem> getAllDevices() {
-        // Call the method on the instance, not on the interface
         return deviceService.getAllDevices();
     }
 

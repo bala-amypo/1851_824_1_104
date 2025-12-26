@@ -1,20 +1,13 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import com.example.demo.model.IssuedDeviceRecord;
 import com.example.demo.service.IssuedDeviceRecordService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import java.util.List;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Issued Device Records Endpoints")
 @RestController
 @RequestMapping("/api/issued-devices")
 public class IssuedDeviceRecordController {
@@ -25,23 +18,29 @@ public class IssuedDeviceRecordController {
         this.service = service;
     }
 
-    @Operation(summary = "Issue device")
+    // POST /api/issued-devices
     @PostMapping
-    public ResponseEntity<IssuedDeviceRecord> issue(@RequestBody IssuedDeviceRecord record) {
+    public ResponseEntity<IssuedDeviceRecord> issueDevice(
+            @RequestBody IssuedDeviceRecord record) {
         return ResponseEntity.ok(service.issueDevice(record));
     }
 
-    @Operation(summary = "Return device")
+    // PUT /api/issued-devices/{id}/return
     @PutMapping("/{id}/return")
     public ResponseEntity<IssuedDeviceRecord> returnDevice(@PathVariable Long id) {
         return ResponseEntity.ok(service.returnDevice(id));
     }
 
-    @Operation(summary = "Get issued devices by employee")
+    // GET /api/issued-devices/employee/{employeeId}
     @GetMapping("/employee/{employeeId}")
     public ResponseEntity<List<IssuedDeviceRecord>> getByEmployee(
             @PathVariable Long employeeId) {
+        return ResponseEntity.ok(service.getByEmployeeId(employeeId));
+    }
 
-        return ResponseEntity.ok(service.getIssuedDevicesByEmployee(employeeId));
+    // GET /api/issued-devices/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<IssuedDeviceRecord> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 }

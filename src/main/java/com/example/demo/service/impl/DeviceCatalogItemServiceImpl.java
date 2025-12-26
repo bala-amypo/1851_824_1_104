@@ -1,38 +1,47 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.model.DeviceCatalogItem;
+import com.example.demo.repository.DeviceCatalogItemRepository;
+import com.example.demo.service.DeviceCatalogItemService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
-public class DeviceCatalogServiceImpl implements DeviceCatalogService {
+public class DeviceCatalogItemServiceImpl implements DeviceCatalogItemService {
 
-    private final DeviceCatalogItemRepository deviceRepo;
+    private final DeviceCatalogItemRepository deviceRepository;
 
-    public DeviceCatalogServiceImpl(DeviceCatalogItemRepository deviceRepo) {
-        this.deviceRepo = deviceRepo;
+    // ✅ Constructor Injection (MANDATORY as per rules)
+    public DeviceCatalogItemServiceImpl(DeviceCatalogItemRepository deviceRepository) {
+        this.deviceRepository = deviceRepository;
     }
 
     @Override
-    public DeviceCatalogItem createItem(DeviceCatalogItem item) {
+    public List<DeviceCatalogItem> getAllDevices() {
+        return deviceRepository.findAll();
+    }
 
-        deviceRepo.findByDeviceCode(item.getDeviceCode())
+    @Override
+    public DeviceCatalogItem addDevice(DeviceCatalogItem device) {
+
+        // Duplicate deviceCode check
+        deviceRepository.findByDeviceCode(device.getDeviceCode())
                 .ifPresent(d -> {
                     throw new BadRequestException("exists");
                 });
 
-        if (item.getMaxAllowedPerEmployee() == null || item.getMaxAllowedPerEmployee() <= 0) {
+        // maxAllowedPerEmployee validation
+        if (device.getMaxAllowedPerEmployee() == null || device.getMaxAllowedPerEmployee() <= 0) {
             throw new BadRequestException("maxAllowedPerEmployee");
         }
 
-        return deviceRepo.save(item);
-    }
+        // Default active = true if not set
+        if (device.getActive() == null) {
+            device.setActive(true);
+        }
 
-    @Override
-    public DeviceCatalogItem updateActiveStatus(Long id, boolean active) {
-        DeviceCatalogItem item = deviceRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Device not found"));
-
-        item.setActive(active);
-        return deviceRepo.save(item);
-    }
-
-    @Override
-    public List<DeviceCatalogItem> getAllItems() {
-        return deviceRepo.findAll();
+        return deviceRepository.save(device);
     }
 }

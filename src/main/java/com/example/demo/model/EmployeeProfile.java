@@ -1,61 +1,118 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "employee_profiles")
+@Table(
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = "employeeId"),
+        @UniqueConstraint(columnNames = "email")
+    }
+)
 public class EmployeeProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
-    private String role;
-    private String password;
+    @Column(nullable = false)
+    private String employeeId;
+
+    @Column(nullable = false)
+    private String fullName;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String department;
+
+    @Column(nullable = false)
+    private String jobRole;
+
+    private Boolean active;
+    private LocalDateTime createdAt;
 
     public EmployeeProfile() {
     }
 
-    public EmployeeProfile(String username, String role, String password) {
-        this.username = username;
-        this.role = role;
-        this.password = password;
+    public EmployeeProfile(String employeeId, String fullName, String email,
+                           String department, String jobRole) {
+        this.employeeId = employeeId;
+        this.fullName = fullName;
+        this.email = email;
+        this.department = department;
+        this.jobRole = jobRole;
+    }
+
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        if (this.active == null) this.active = true;
+        if (this.jobRole == null) this.jobRole = "STAFF";
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public String getUsername() {
-        return username;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getFullName() {
+        return fullName;
     }
 
-    public String getRole() {
-        return role;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public String getEmail() {
+        return email;
     }
 
-    public String getPassword() {
-        return password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getJobRole() {
+        return jobRole;
+    }
+
+    public void setJobRole(String jobRole) {
+        this.jobRole = jobRole;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }

@@ -1,10 +1,13 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.DeviceCatalogItem;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface DeviceCatalogItemRepository extends JpaRepository<DeviceCatalogItem, Long> {
-    // Default CRUD methods are enough
+
+    Optional<DeviceCatalogItem> findByDeviceCode(String deviceCode);
+
+    List<DeviceCatalogItem> findAll();
 }

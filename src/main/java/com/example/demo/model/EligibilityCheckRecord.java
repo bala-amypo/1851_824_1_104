@@ -4,7 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,53 +15,60 @@ public class EligibilityCheckRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long employeeId;
-    private Long deviceId;
-    private Boolean eligible;
+    @ManyToOne(optional = false)
+    private EmployeeProfile employee;
+
+    @ManyToOne(optional = false)
+    private DeviceCatalogItem device;
+
+    private Boolean isEligible;
     private String reason;
     private LocalDateTime checkedAt;
 
     public EligibilityCheckRecord() {
     }
 
-    public EligibilityCheckRecord(Long employeeId, Long deviceId, Boolean eligible, String reason, LocalDateTime checkedAt) {
-        this.employeeId = employeeId;
-        this.deviceId = deviceId;
-        this.eligible = eligible;
+    public EligibilityCheckRecord(EmployeeProfile employee,
+                                  DeviceCatalogItem device,
+                                  Boolean isEligible,
+                                  String reason) {
+        this.employee = employee;
+        this.device = device;
+        this.isEligible = isEligible;
         this.reason = reason;
-        this.checkedAt = checkedAt;
+    }
+
+    @PrePersist
+    public void onCheck() {
+        this.checkedAt = LocalDateTime.now();
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public EmployeeProfile getEmployee() {
+        return employee;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public void setEmployee(EmployeeProfile employee) {
+        this.employee = employee;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public DeviceCatalogItem getDevice() {
+        return device;
     }
 
-    public Long getDeviceId() {
-        return deviceId;
+    public void setDevice(DeviceCatalogItem device) {
+        this.device = device;
     }
 
-    public void setDeviceId(Long deviceId) {
-        this.deviceId = deviceId;
+    public Boolean getIsEligible() {
+        return isEligible;
     }
 
-    public Boolean getEligible() {
-        return eligible;
-    }
-
-    public void setEligible(Boolean eligible) {
-        this.eligible = eligible;
+    public void setIsEligible(Boolean isEligible) {
+        this.isEligible = isEligible;
     }
 
     public String getReason() {
@@ -73,9 +81,5 @@ public class EligibilityCheckRecord {
 
     public LocalDateTime getCheckedAt() {
         return checkedAt;
-    }
-
-    public void setCheckedAt(LocalDateTime checkedAt) {
-        this.checkedAt = checkedAt;
     }
 }

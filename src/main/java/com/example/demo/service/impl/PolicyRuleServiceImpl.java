@@ -1,21 +1,30 @@
-// File: src/main/java/com/example/demo/service/impl/PolicyRuleServiceDummyImpl.java
-package com.example.demo.service.impl;
-
-import com.example.demo.model.PolicyRule;
-import com.example.demo.service.PolicyRuleService;
-import org.springframework.stereotype.Service;
-import java.util.List;
-
 @Service
 public class PolicyRuleServiceImpl implements PolicyRuleService {
 
-    @Override
-    public List<PolicyRule> getAllPolicies() {
-        return null; // dummy return
+    private final PolicyRuleRepository ruleRepo;
+
+    public PolicyRuleServiceImpl(PolicyRuleRepository ruleRepo) {
+        this.ruleRepo = ruleRepo;
     }
 
     @Override
-    public PolicyRule addPolicy(PolicyRule policy) {
-        return null; // dummy return
+    public PolicyRule createRule(PolicyRule rule) {
+
+        ruleRepo.findByRuleCode(rule.getRuleCode())
+                .ifPresent(r -> {
+                    throw new BadRequestException("Rule code");
+                });
+
+        return ruleRepo.save(rule);
+    }
+
+    @Override
+    public List<PolicyRule> getAllRules() {
+        return ruleRepo.findAll();
+    }
+
+    @Override
+    public List<PolicyRule> getActiveRules() {
+        return ruleRepo.findByActiveTrue();
     }
 }

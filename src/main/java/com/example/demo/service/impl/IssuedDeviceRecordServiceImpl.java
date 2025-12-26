@@ -1,3 +1,18 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.DeviceCatalogItem;
+import com.example.demo.model.EmployeeProfile;
+import com.example.demo.model.IssuedDeviceRecord;
+import com.example.demo.repository.DeviceCatalogItemRepository;
+import com.example.demo.repository.EmployeeProfileRepository;
+import com.example.demo.repository.IssuedDeviceRecordRepository;
+import com.example.demo.service.IssuedDeviceRecordService;
+import java.time.LocalDate;
+import java.util.List;
+import org.springframework.stereotype.Service;
+
 @Service
 public class IssuedDeviceRecordServiceImpl implements IssuedDeviceRecordService {
 
@@ -18,21 +33,21 @@ public class IssuedDeviceRecordServiceImpl implements IssuedDeviceRecordService 
     @Override
     public IssuedDeviceRecord issueDevice(IssuedDeviceRecord record) {
 
-        employeeRepo.findById(record.getEmployee().getId())
+        EmployeeProfile employee = employeeRepo.findById(record.getEmployee().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found"));
 
-        deviceRepo.findById(record.getDeviceItem().getId())
+        DeviceCatalogItem device = deviceRepo.findById(record.getDevice().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Device not found"));
 
         List<IssuedDeviceRecord> active =
-                issuedRepo.findActiveByEmployeeAndDevice(
-                        record.getEmployee().getId(),
-                        record.getDeviceItem().getId());
+                issuedRepo.findActiveByEmployeeAndDevice(employee.getId(), device.getId());
 
         if (!active.isEmpty()) {
             throw new BadRequestException("active issuance");
         }
 
+        record.setEmployee(employee);
+        record.setDevice(device);
         record.setIssuedDate(LocalDate.now());
         record.setStatus("ISSUED");
 
@@ -43,7 +58,7 @@ public class IssuedDeviceRecordServiceImpl implements IssuedDeviceRecordService 
     public IssuedDeviceRecord returnDevice(Long recordId) {
 
         IssuedDeviceRecord record = issuedRepo.findById(recordId)
-                .orElseThrow(() -> new ResourceNotFoundException("Record not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Issued device not found"));
 
         if ("RETURNED".equals(record.getStatus())) {
             throw new BadRequestException("already returned");

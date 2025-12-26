@@ -1,30 +1,40 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.exception.BadRequestException;
+import com.example.demo.model.PolicyRule;
+import com.example.demo.repository.PolicyRuleRepository;
+import com.example.demo.service.PolicyRuleService;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
+
 @Service
 public class PolicyRuleServiceImpl implements PolicyRuleService {
 
-    private final PolicyRuleRepository ruleRepo;
+    private final PolicyRuleRepository repository;
 
-    public PolicyRuleServiceImpl(PolicyRuleRepository ruleRepo) {
-        this.ruleRepo = ruleRepo;
+    public PolicyRuleServiceImpl(PolicyRuleRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public PolicyRule createRule(PolicyRule rule) {
 
-        ruleRepo.findByRuleCode(rule.getRuleCode())
-                .ifPresent(r -> {
-                    throw new BadRequestException("Rule code");
-                });
+        Optional<PolicyRule> existing = repository.findByRuleCode(rule.getRuleCode());
+        if (existing.isPresent()) {
+            throw new BadRequestException("Rule code");
+        }
 
-        return ruleRepo.save(rule);
+        return repository.save(rule);
     }
 
     @Override
     public List<PolicyRule> getAllRules() {
-        return ruleRepo.findAll();
+        return repository.findAll();
     }
 
     @Override
     public List<PolicyRule> getActiveRules() {
-        return ruleRepo.findByActiveTrue();
+        return repository.findByActiveTrue();
     }
 }

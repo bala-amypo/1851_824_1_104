@@ -1,57 +1,59 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "issued_device_record")
 public class IssuedDeviceRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    private EmployeeProfile employee;
-
-    @ManyToOne(optional = false)
-    private DeviceCatalogItem device;
+    private Long employeeId;
+    private Long deviceItemId;
 
     private LocalDate issuedDate;
     private LocalDate returnedDate;
-    private String status;
 
+    private String status; // ISSUED / RETURNED
+
+    // No-argument constructor
     public IssuedDeviceRecord() {
     }
 
-    public IssuedDeviceRecord(EmployeeProfile employee, DeviceCatalogItem device) {
-        this.employee = employee;
-        this.device = device;
+    // Parameterized constructor
+    public IssuedDeviceRecord(Long employeeId, Long deviceItemId) {
+        this.employeeId = employeeId;
+        this.deviceItemId = deviceItemId;
         this.issuedDate = LocalDate.now();
         this.status = "ISSUED";
     }
 
+    // getters and setters
     public Long getId() {
         return id;
     }
 
-    public EmployeeProfile getEmployee() {
-        return employee;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setEmployee(EmployeeProfile employee) {
-        this.employee = employee;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public DeviceCatalogItem getDevice() {
-        return device;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public void setDevice(DeviceCatalogItem device) {
-        this.device = device;
+    public Long getDeviceItemId() {
+        return deviceItemId;
+    }
+
+    public void setDeviceItemId(Long deviceItemId) {
+        this.deviceItemId = deviceItemId;
     }
 
     public LocalDate getIssuedDate() {

@@ -1,49 +1,44 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "deviceCode"))
+@Table(name = "device_catalog_item")
 public class DeviceCatalogItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String deviceCode;
 
-    @Column(nullable = false)
     private String deviceType;
-
-    @Column(nullable = false)
     private String model;
-
-    @Column(nullable = false)
     private Integer maxAllowedPerEmployee;
-
     private Boolean active;
 
+    // No-argument constructor
     public DeviceCatalogItem() {
     }
 
-    public DeviceCatalogItem(String deviceCode, String deviceType,
-                             String model, Integer maxAllowedPerEmployee) {
+    // Parameterized constructor
+    public DeviceCatalogItem(String deviceCode, String deviceType,String model, Integer maxAllowedPerEmployee,Boolean active) {
+                             
         this.deviceCode = deviceCode;
         this.deviceType = deviceType;
         this.model = model;
         this.maxAllowedPerEmployee = maxAllowedPerEmployee;
-        this.active = true;
+        this.active = active;
     }
 
+    // getters and setters
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDeviceCode() {

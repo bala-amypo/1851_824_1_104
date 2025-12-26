@@ -1,66 +1,70 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
+// import jakarta.persistence.PrePersist;
+
+
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "eligibility_check_record")
 public class EligibilityCheckRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    private EmployeeProfile employee;
-
-    @ManyToOne(optional = false)
-    private DeviceCatalogItem device;
-
+    private Long employeeId;
+    private Long deviceItemId;
     private Boolean isEligible;
     private String reason;
+
     private LocalDateTime checkedAt;
 
+    // Automatically set checkedAt before insert
+    @PrePersist
+    public void prePersist() {
+        if (this.checkedAt == null) {
+            this.checkedAt = LocalDateTime.now();
+        }
+    }
+
+    // No-argument constructor
     public EligibilityCheckRecord() {
     }
 
-    public EligibilityCheckRecord(EmployeeProfile employee,
-                                  DeviceCatalogItem device,
-                                  Boolean isEligible,
-                                  String reason) {
-        this.employee = employee;
-        this.device = device;
+    // Parameterized constructor
+    public EligibilityCheckRecord(Long employeeId, Long deviceItemId,
+                                  Boolean isEligible, String reason) {
+        this.employeeId = employeeId;
+        this.deviceItemId = deviceItemId;
         this.isEligible = isEligible;
         this.reason = reason;
     }
 
-    @PrePersist
-    public void onCheck() {
-        this.checkedAt = LocalDateTime.now();
-    }
-
+    // getters and setters
     public Long getId() {
         return id;
     }
 
-    public EmployeeProfile getEmployee() {
-        return employee;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setEmployee(EmployeeProfile employee) {
-        this.employee = employee;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public DeviceCatalogItem getDevice() {
-        return device;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public void setDevice(DeviceCatalogItem device) {
-        this.device = device;
+    public Long getDeviceItemId() {
+        return deviceItemId;
+    }
+
+    public void setDeviceItemId(Long deviceItemId) {
+        this.deviceItemId = deviceItemId;
     }
 
     public Boolean getIsEligible() {
@@ -81,5 +85,9 @@ public class EligibilityCheckRecord {
 
     public LocalDateTime getCheckedAt() {
         return checkedAt;
+    }
+
+    public void setCheckedAt(LocalDateTime checkedAt) {
+        this.checkedAt = checkedAt;
     }
 }

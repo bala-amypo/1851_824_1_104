@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.AuthRequest;
-import com.example.demo.dto.AuthResponse;
+import com.example.demo.model.EligibilityCheckRecord;
+import java.util.List;
 
 public interface EligibilityCheckService {
-    AuthResponse checkEligibility(AuthRequest request);
+
+    EligibilityCheckRecord validateEligibility(Long employeeId, Long deviceItemId);
+
+    List<EligibilityCheckRecord> getChecksByEmployee(Long employeeId);
 }

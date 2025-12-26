@@ -1,7 +1,13 @@
 package com.example.demo.service;
 
-import org.springframework.stereotype.Service;
+import com.example.demo.model.IssuedDeviceRecord;
+import java.util.List;
 
-@Service
-public class IssuedDeviceRecordService {
+public interface IssuedDeviceRecordService {
+
+    IssuedDeviceRecord issueDevice(IssuedDeviceRecord record);
+
+    IssuedDeviceRecord returnDevice(Long recordId);
+
+    List<IssuedDeviceRecord> getIssuedDevicesByEmployee(Long employeeId);
 }

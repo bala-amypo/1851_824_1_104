@@ -4,6 +4,10 @@ import com.example.demo.model.DeviceCatalogItem;
 import java.util.List;
 
 public interface DeviceCatalogItemService {
-    List<DeviceCatalogItem> getAllDevices();
-    DeviceCatalogItem addDevice(DeviceCatalogItem device);
+
+    DeviceCatalogItem createItem(DeviceCatalogItem item);
+
+    DeviceCatalogItem updateActiveStatus(Long id, boolean active);
+
+    List<DeviceCatalogItem> getAllItems();
 }

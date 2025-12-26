@@ -1,7 +1,15 @@
 package com.example.demo.service;
 
-import org.springframework.stereotype.Service;
+import com.example.demo.model.EmployeeProfile;
+import java.util.List;
 
-@Service
-public class EmployeeProfileService {
+public interface EmployeeProfileService {
+
+    EmployeeProfile createEmployee(EmployeeProfile employee);
+
+    EmployeeProfile getEmployeeById(Long id);
+
+    List<EmployeeProfile> getAllEmployees();
+
+    EmployeeProfile updateEmployeeStatus(Long id, boolean active);
 }
